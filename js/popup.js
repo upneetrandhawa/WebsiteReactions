@@ -33,7 +33,7 @@ function getCurrentTabUrl(callback) {
     // from |queryInfo|), then the "tabs" permission is required to see their
     // "url" properties.
     console.assert(typeof url == 'string', 'tab.url should be a string');
-
+    document.getElementById("outputURL").innerHTML = "you reacted to "+ url + " as: " ;
     callback(url);
   });
 
@@ -143,7 +143,7 @@ else if (document.getElementById('sad').checked) {
 else if (document.getElementById('angry').checked) {
   selectedReaction = document.getElementById('angry').value;
 }
-
-document.getElementById("output").innerHTML = "you selected " + selectedReaction;
+getCurrentTabUrl();
+document.getElementById("outputReacted").innerHTML = selectedReaction;
 //document.write(selectedReaction);
 }
