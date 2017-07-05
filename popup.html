@@ -6,7 +6,7 @@
  -->
 <html>
   <head>
-    <title>Getting Started Extension's Popup</title>
+    <title>Website Reactions</title>
     <style>
       body {
         font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
@@ -19,6 +19,56 @@
         overflow: hidden;
         max-width: 400px;
       }
+      .output_css`{
+        white-space: pre;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 400px;
+      }
+      img {
+        width: 400px;
+        border-radius: 50%;
+      }
+      .like_css{
+        width: 100px;
+      }
+      .love_css{
+        width: 90px;
+      }
+      .haha_css{
+        width: 90px;
+      }
+      .wow_css{
+        width: 100px;
+      }
+      .sad_css{
+        width: 80px;
+      }
+      .angry_css{
+        width: 80px;
+      }
+      label > input{ /* HIDE RADIO */
+        visibility: hidden; /* Makes input not-clickable */
+        position: absolute; /* Remove input from document flow */
+      }
+
+      label > input + img{ /* IMAGE STYLES */
+        cursor:pointer;
+        /*border:2px solid transparent;*/
+      }
+
+      label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+       /* border:2px solid #f00;*/
+        width:130px;
+     -webkit-box-shadow: 13px 62px 82px -29px rgba(0,0,0,1);
+-moz-box-shadow: 13px 62px 82px -29px rgba(0,0,0,1);
+box-shadow: 13px 62px 82px -29px rgba(0,0,0,1);
+      }
+      label > input:hover + img{ /* (RADIO CHECKED) IMAGE STYLES */
+       /* border:2px solid #f00;*/
+        width:130px;
+      }
+
     </style>
 
     <!--
@@ -27,11 +77,42 @@
       -
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
      -->
-    <script src="popup.js"></script>
+    <script src="js/popup.js"></script>
   </head>
   <body>
-    <div id="status"></div>
-    <img id="image-result" hidden>
+
+    <div id="status">
+      React to this website
+    </div>
+    <div>
+    </div>
+    <label>
+      <input type="radio" name="reactions" value="like" id="like" onclick="handleClick()" />
+      <img src="like.png" class="like_css">
+    </label>
+    <label>
+      <input type="radio" name="reactions" value="love" id="love" onclick="handleClick()"/>
+      <img src="love.png" class="love_css">
+    </label>
+    <label>
+      <input type="radio" name="reactions" value="haha" id="haha"onclick="handleClick()"/>
+      <img src="haha.png" class="haha_css">
+    </label>
+    <label>
+      <input type="radio" name="reactions" value="wow" id="wow" onclick="handleClick()"/>
+      <img src="wow.png" class="wow_css">
+    </label>
+    <label>
+      <input type="radio" name="reactions" value="sad" id="sad" onclick="handleClick()"/>
+      <img src="sad.png" class="sad_css">
+    </label>
+    <label>
+      <input type="radio" name="reactions" value="angry" id="angry" onclick="handleClick()"/>
+      <img src="angry.png" class="angry_css">
+    </label>
+    <p id="output" class="output_css">
+    notjing
+    </p>
   </body>
 </html>
 
