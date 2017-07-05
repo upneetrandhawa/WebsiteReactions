@@ -116,3 +116,34 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+function handleClick(){
+  var selectedReaction;
+  
+
+if (document.getElementById("like").checked) {
+  selectedReaction = document.getElementById("like").value;
+
+}
+else if (document.getElementById('love').checked) {
+  selectedReaction = document.getElementById('love').value;
+}
+else if (document.getElementById('haha').checked) {
+  selectedReaction = document.getElementById('haha').value;
+}
+
+else if (document.getElementById('wow').checked) {
+  selectedReaction = document.getElementById('wow').value;
+}
+
+else if (document.getElementById('sad').checked) {
+  selectedReaction = document.getElementById('sad').value;
+}
+
+else if (document.getElementById('angry').checked) {
+  selectedReaction = document.getElementById('angry').value;
+}
+
+document.getElementById("output").innerHTML = "you selected " + selectedReaction;
+//document.write(selectedReaction);
+}
