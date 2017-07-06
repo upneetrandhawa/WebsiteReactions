@@ -143,7 +143,10 @@ else if (document.getElementById('sad').checked) {
 else if (document.getElementById('angry').checked) {
   selectedReaction = document.getElementById('angry').value;
 }
-getCurrentTabUrl();
-document.getElementById("outputReacted").innerHTML = selectedReaction;
+document.getElementById("output").innerHTML = "you reacted to "+ document.location.href + " as: " + selectedReaction;
+//document.getElementById("outputReacted").innerHTML = selectedReaction;
+
+//getCurrentTabUrl();
+
 //document.write(selectedReaction);
 }
