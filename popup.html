@@ -47,6 +47,8 @@
       .angry_css{
         width: 80px;
       }
+      
+
       label > input{ /* HIDE RADIO */
         visibility: hidden; /* Makes input not-clickable */
         position: absolute; /* Remove input from document flow */
@@ -55,6 +57,7 @@
       label > input + img{ /* IMAGE STYLES */
         cursor:pointer;
         /*border:2px solid transparent;*/
+
       }
 
       label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
@@ -66,8 +69,15 @@
       }
       label > input:hover + img{ /* (RADIO CHECKED) IMAGE STYLES */
        /* border:2px solid #f00;*/
+        -webkit-transition: width 0.5s;
         width:130px;
+
       }
+      .radioDiv {
+        padding-top: 20px;
+
+      }
+
 
     </style>
 
@@ -84,8 +94,9 @@
     <div id="status">
       React to this website
     </div>
-    <div>
-    </div>
+    <div class="radioDiv">
+    
+
     <label>
       <input type="radio" name="reactions" value="like" id="like" onclick="handleClick()" />
       <img src="reactionImages/like.png" class="like_css">
@@ -111,7 +122,7 @@
       <img src="reactionImages/angry.png" class="angry_css">
     </label>
    
-   
+   </div>
    <p id="output" class="output_css">
     
    </p>
