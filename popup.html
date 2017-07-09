@@ -47,28 +47,54 @@
       .angry_css{
         width: 80px;
       }
+      
       label > input{ /* HIDE RADIO */
         visibility: hidden; /* Makes input not-clickable */
         position: absolute; /* Remove input from document flow */
       }
-
       label > input + img{ /* IMAGE STYLES */
         cursor:pointer;
+        padding-left: 5px;
+          padding-right: 5px;
         /*border:2px solid transparent;*/
       }
-
       label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
        /* border:2px solid #f00;*/
         width:130px;
-     -webkit-box-shadow: 13px 62px 82px -29px rgba(0,0,0,1);
--moz-box-shadow: 13px 62px 82px -29px rgba(0,0,0,1);
-box-shadow: 13px 62px 82px -29px rgba(0,0,0,1);
+       -webkit-box-shadow: 13px 62px 82px -29px rgba(0,0,0,1);
+       -moz-box-shadow: 13px 62px 82px -29px rgba(0,0,0,1);
+       box-shadow: 13px 62px 82px -29px rgba(0,0,0,1);
       }
       label > input:hover + img{ /* (RADIO CHECKED) IMAGE STYLES */
        /* border:2px solid #f00;*/
+        -webkit-transition: width 0.5s;
         width:130px;
       }
+      .radioDiv {
+        padding-top: 50px;
+      }
+      
+      ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #333333;
+          position: fixed;
+      }
 
+      li {
+          float: left;
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 16px;
+          text-decoration: none;
+          padding-left: 50px;
+          padding-right: 40px;
+      }
+
+       
     </style>
 
     <!--
@@ -79,40 +105,56 @@ box-shadow: 13px 62px 82px -29px rgba(0,0,0,1);
      -->
     <script src="js/popup.js"></script>
   </head>
-  <body>
+  <body onload="initData()">
 
     <div id="status">
       React to this website
     </div>
-    <div>
-    </div>
+    <ul>
+    <li id="likeCounter"> </li>
+    <li id="loveCounter"> </li>
+    <li id="hahaCounter"> </li>
+    <li id="wowCounter"> </li>
+    <li id="sadCounter"> </li>
+    <li id="angryCounter"> </li>
+   </ul>
+    <div class="radioDiv">
+    
+
     <label>
       <input type="radio" name="reactions" value="like" id="like" onclick="handleClick()" />
-      <img src="like.png" class="like_css">
+      <img src="reactionImages/like.png" class="like_css">
     </label>
     <label>
       <input type="radio" name="reactions" value="love" id="love" onclick="handleClick()"/>
-      <img src="love.png" class="love_css">
+      <img src="reactionImages/love.png" class="love_css">
     </label>
     <label>
       <input type="radio" name="reactions" value="haha" id="haha"onclick="handleClick()"/>
-      <img src="haha.png" class="haha_css">
+      <img src="reactionImages/haha.png" class="haha_css">
     </label>
     <label>
       <input type="radio" name="reactions" value="wow" id="wow" onclick="handleClick()"/>
-      <img src="wow.png" class="wow_css">
+      <img src="reactionImages/wow.png" class="wow_css">
     </label>
     <label>
       <input type="radio" name="reactions" value="sad" id="sad" onclick="handleClick()"/>
-      <img src="sad.png" class="sad_css">
+      <img src="reactionImages/sad.png" class="sad_css">
     </label>
     <label>
       <input type="radio" name="reactions" value="angry" id="angry" onclick="handleClick()"/>
-      <img src="angry.png" class="angry_css">
+      <img src="reactionImages/angry.png" class="angry_css">
     </label>
-    <p id="output" class="output_css">
-    notjing
-    </p>
+   
+   </div>
+
+   
+
+
+   <br><br><br>
+   <p id="output" class="output_css">
+    
+   </p>
+   
   </body>
 </html>
-

@@ -118,32 +118,128 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function handleClick(){
+
   var selectedReaction;
-  
+  var counter;
 
 if (document.getElementById("like").checked) {
   selectedReaction = document.getElementById("like").value;
+  handleCounter("like");
 
 }
 else if (document.getElementById('love').checked) {
   selectedReaction = document.getElementById('love').value;
+  handleCounter("love");
+
 }
 else if (document.getElementById('haha').checked) {
   selectedReaction = document.getElementById('haha').value;
+  handleCounter("haha");
 }
 
 else if (document.getElementById('wow').checked) {
   selectedReaction = document.getElementById('wow').value;
+  handleCounter("wow");
 }
 
 else if (document.getElementById('sad').checked) {
   selectedReaction = document.getElementById('sad').value;
+  handleCounter("sad");
 }
 
 else if (document.getElementById('angry').checked) {
   selectedReaction = document.getElementById('angry').value;
+  handleCounter("angry");
+}
+var url = document.location.href;
+chrome.storage.sync.set({url: selectedReaction}, function() {
+          // Notify that we saved.
+          alert('Reaction saved');
+          console.log(selectedReaction + " reaction for: " + url + " saved");
+        });
+document.getElementById("output").innerHTML = "you reacted to " + url + " as " + selectedReaction;
+//document.write(selectedReaction);
 }
 
-document.getElementById("output").innerHTML = "you selected " + selectedReaction;
-//document.write(selectedReaction);
+function initData(){
+  /*When Firebase will be integrated*/
+  /*
+  var countLikes = getFromFirebase();
+  var countLove = getFromFirebase();
+  var countHaha = getFromFirebase();
+  var countWow= getFromFirebase();
+  var countSad = getFromFirebase();
+  var countAngry = getFromFirebase();
+  */
+  console.log("in initData");
+
+  /*for now*/
+  var countLikes = 0;
+  var countLove = 0;
+  var countHaha = 0;
+  var countWow= 0;
+  var countSad = 0;
+  var countAngry = 0;
+  var url = document.location.href;
+  
+  var reactionsRadioIds = ["like", "love", "haha", "wow", "sad", "angry"];
+  var previousReaction;
+  
+
+  chrome.storage.sync.get(url,
+  function(data){
+    if(chrome.runtime.lastError)
+    {
+        /* error */
+        console.log("no previous reaction saved for: " + url);
+        return;
+    }
+    else {
+    previousReaction = data.url;
+    console.log(" previous reaction for: " + url + " was " + previousReaction);
+    }
+  });
+
+  for(var i = 0; i < reactionsRadioIds.length; i++){
+    
+    if(previousReaction == reactionsRadioIds[i]){
+      var id = reactionsRadioIds[i]+"Counter";
+      document.getElementById(id).innerHTML = 1;
+      console.log("previous reaction: " + previousReaction + " set");
+      document.getElementById(previousReaction).checked = true;
+    }
+    else{
+      var id = reactionsRadioIds[i]+"Counter";
+      document.getElementById(id).innerHTML = 0;
+    
+    
+    }
+  }
+
+  // document.getElementById('likeCounter').innerHTML = countLikes;
+  // document.getElementById('loveCounter').innerHTML = countLove;
+  // document.getElementById('hahaCounter').innerHTML = countHaha;
+  // document.getElementById('wowCounter').innerHTML = countWow;
+  // document.getElementById('sadCounter').innerHTML = countSad;
+  // document.getElementById('angryCounter').innerHTML = countAngry;
+
+}
+
+function handleCounter(reactionId){
+  console.log("in handleCounter for: " + reactionId);
+  var reactionsRadioIds = ["like", "love", "haha", "wow", "sad", "angry"];
+  for(var i = 0; i < reactionsRadioIds.length; i++){
+    
+    if(reactionId == reactionsRadioIds[i]){
+      var id = reactionsRadioIds[i]+"Counter";
+      document.getElementById(id).innerHTML = 1;
+      console.log("counter of " + id+ " increased.");
+    }
+    else{
+      var id = reactionsRadioIds[i]+"Counter";
+      document.getElementById(id).innerHTML = 0;
+    
+    console.log("counter of " + id+ " decreased.");
+  }
+  }
 }
