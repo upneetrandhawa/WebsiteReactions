@@ -33,7 +33,7 @@ function getCurrentTabUrl(callback) {
     // from |queryInfo|), then the "tabs" permission is required to see their
     // "url" properties.
     console.assert(typeof url == 'string', 'tab.url should be a string');
-
+    document.getElementById("outputURL").innerHTML = "you reacted to "+ url + " as: " ;
     callback(url);
   });
 
@@ -151,6 +151,7 @@ else if (document.getElementById('angry').checked) {
   selectedReaction = document.getElementById('angry').value;
   handleCounter("angry");
 }
+
 var url = document.location.href;
 chrome.storage.sync.set({url: selectedReaction}, function() {
           // Notify that we saved.
@@ -158,6 +159,11 @@ chrome.storage.sync.set({url: selectedReaction}, function() {
           console.log(selectedReaction + " reaction for: " + url + " saved");
         });
 document.getElementById("output").innerHTML = "you reacted to " + url + " as " + selectedReaction;
+
+
+//getCurrentTabUrl();
+
+
 //document.write(selectedReaction);
 }
 
